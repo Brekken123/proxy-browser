@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Proxy Browser</title>
+  <link rel="stylesheet" href="/style.css" />
+</head>
+<body>
+  <div class="shell" id="shell">
+    <!-- Toolbar -->
+    <header class="toolbar">
+      <div class="nav">
+        <button id="back" title="Back" aria-label="Back">&#8592;</button>
+        <button id="forward" title="Forward" aria-label="Forward">&#8594;</button>
+        <button id="refresh" title="Refresh" aria-label="Refresh">&#8635;</button>
+        <button id="home" title="Home" aria-label="Home">&#8962;</button>
+      </div>
+
+      <form id="address-form" class="address" autocomplete="off">
+        <span class="lock" id="lock">🔍</span>
+        <input id="address" type="text" placeholder="Search or enter address" spellcheck="false" />
+        <button type="submit" class="go">Go</button>
+        <div class="progress" id="progress"></div>
+      </form>
+
+      <div class="actions">
+        <button id="newtab" title="Open in new tab" aria-label="Open in new tab">&#8599;</button>
+        <button id="fullscreen" title="Full screen" aria-label="Full screen">&#9974;</button>
+        <button id="theme" title="Toggle dark mode" aria-label="Toggle dark mode">&#9790;</button>
+        <button id="settings-btn" title="Settings" aria-label="Settings">&#9881;</button>
+      </div>
+    </header>
+
+    <!-- Status bar showing the real current URL -->
+    <div class="status"><span id="current-url">New tab</span></div>
+
+    <!-- Content -->
+    <main class="viewport">
+      <section id="home-page" class="home">
+        <h1>Proxy<span>Browser</span></h1>
+        <form id="home-form" class="home-search">
+          <input id="home-input" type="text" placeholder="Search the web or type a URL" />
+        </form>
+        <div class="shortcuts">
+          <button data-url="https://en.wikipedia.org">Wikipedia</button>
+          <button data-url="https://news.ycombinator.com">Hacker News</button>
+          <button data-url="https://example.com">Example</button>
+          <button data-url="https://duckduckgo.com/html">DuckDuckGo</button>
+        </div>
+      </section>
+      <iframe id="frame" title="Proxied page" hidden></iframe>
+    </main>
+  </div>
+
+  <!-- Settings panel -->
+  <aside id="settings" class="settings" hidden>
+    <div class="settings-card">
+      <h2>Settings</h2>
+      <label>Search engine
+        <select id="engine">
+          <option value="duckduckgo">DuckDuckGo</option>
+          <option value="google">Google</option>
+        </select>
+      </label>
+      <label>User-Agent
+        <textarea id="ua" rows="3" placeholder="Leave empty for default"></textarea>
+      </label>
+      <div class="row">
+        <button id="save-ua" class="primary">Save User-Agent</button>
+        <button id="clear" class="danger">Clear cookies &amp; session</button>
+      </div>
+      <p id="settings-msg" class="msg"></p>
+      <button id="close-settings" class="close">Close</button>
+    </div>
+  </aside>
+
+  <script src="/app.js"></script>
+</body>
+</html>
